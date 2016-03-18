@@ -1,2 +1,8 @@
 = WildFly Swarm and Couchbase Sample
 
+Use the command `mvn package install` to:
+
+. Create the "`fat jar`"
+. Build the Docker image
+. Run the Docker container
+

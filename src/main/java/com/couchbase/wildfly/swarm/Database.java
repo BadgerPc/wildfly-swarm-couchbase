@@ -40,7 +40,6 @@ public class Database {
 
     public CouchbaseCluster getCluster() {
         if (null == cluster) {
-//            cluster = CouchbaseCluster.create("192.168.99.100");
             cluster = CouchbaseCluster.create(System.getenv("COUCHBASE_URI"));
         }
         return cluster;

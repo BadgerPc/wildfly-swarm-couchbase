@@ -83,7 +83,7 @@
                                 <assembly>
                                     <descriptorRef>artifact</descriptorRef>
                                 </assembly>
-                                <cmd>java -cp maven/nosql-microservices.jar</cmd>
+                                <cmd>java -jar maven/nosql-microservices.jar</cmd>
                             </build>
                             <run>
                                 <ports>

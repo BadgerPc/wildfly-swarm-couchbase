@@ -1,8 +1,17 @@
-= WildFly Swarm and Couchbase Sample
+= Java Microservice using Couchbase and WildFly Swarm
+
+== Start and Configure Couchbase
 
 . Start Couchbase container:
 
   docker run -p 8091-8093:8091-8093 -p 11210:11210 arungupta/couchbase
+
+. Access Couchbase Web Console at http://{docker.host}:8091
+. Use credentials `Administrator` and `password`
+. Click on "`Settings`", "`Sample Buckets`"
+. Select `travel-sample` and click on "`Create`"
+
+== Build and Run the microservice using WildFly Swarm
 
 . Use the command `mvn package install` to:
 .. Create the "`fat jar`"

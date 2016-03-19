@@ -5,7 +5,7 @@
     <groupId>com.couchbase.wildfly.swarm</groupId>
     <artifactId>nosql-microservices</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>nosql-microservices</name>
 
@@ -13,7 +13,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.wildfly-swarm>1.0.0.Beta6</version.wildfly-swarm>
         <docker.image>arungupta/nosql-microservices:latest</docker.image>
-        <swarm.port>8080</swarm.port>
     </properties>
 
     <dependencyManagement>
@@ -103,9 +102,15 @@
                                             <port>8080</port>
                                         </ports>
                                         <assembly>
-                                            <descriptorRef>artifact</descriptorRef>
+                                            <inline>
+                                                <files>
+                                                    <file>
+                                                        <source>${project.build.directory}/${project.artifactId}-swarm.jar</source>
+                                                    </file>
+                                                </files>
+                                            </inline>
                                         </assembly>
-                                        <cmd>java -jar maven/nosql-microservices.jar</cmd>
+                                        <cmd>java -jar /maven/${project.artifactId}-swarm.jar</cmd>
                                     </build>
                                     <run>
                                         <ports>
@@ -115,14 +120,13 @@
                                         <env>
                                             <COUCHBASE_URI>${docker.host.address}</COUCHBASE_URI>
                                         </env>
-                                        <!--                                <wait>
+                                        <wait>
                                             <http>
                                                 <url>http://${docker.host.address}:${swarm.port}</url>
-                                                 Change this to 200 when the URL above hits an endpoint 
                                                 <status>200</status>
                                             </http>
                                             <time>30000</time>
-                                        </wait>-->
+                                        </wait>
                                         <log>
                                             <color>yellow</color>
                                             <prefix>SWARM</prefix>

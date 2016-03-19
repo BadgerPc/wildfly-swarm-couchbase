@@ -13,8 +13,19 @@
 
 == Build and Run the microservice using WildFly Swarm
 
-. Use the command `mvn package install` to:
-.. Create the "`fat jar`"
-.. Build the Docker image
-.. Run the Docker container
+Endpoint: http://localhost:8080/webresources/airline
+
+=== Using Maven only
+
+Build and Run: `mvn clean wildfly:run`
+
+=== Using CLI
+
+Build: `mvn clean package`
+
+Run: `java -jar target/nosql-microservices-swarm.jar`
+
+=== Using Docker
+
+Needs debuggin
 

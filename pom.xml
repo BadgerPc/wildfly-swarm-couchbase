@@ -11,11 +11,22 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.wildfly-swarm>1.0.0.Alpha5</version.wildfly-swarm>
+        <version.wildfly-swarm>1.0.0.Beta6</version.wildfly-swarm>
         <docker.image>arungupta/nosql-microservices:latest</docker.image>
         <swarm.port>8080</swarm.port>
     </properties>
-    
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>bom</artifactId>
+                <version>${version.wildfly-swarm}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -25,8 +36,11 @@
         </dependency>
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
-            <artifactId>wildfly-swarm-jaxrs</artifactId>
-            <version>${version.wildfly-swarm}</version>
+            <artifactId>jaxrs-weld</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>ejb</artifactId>
         </dependency>
         <dependency>
             <groupId>com.couchbase.client</groupId>

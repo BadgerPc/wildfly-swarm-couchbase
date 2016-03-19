@@ -27,5 +27,7 @@ Run: `java -jar target/nosql-microservices-swarm.jar`
 
 === Using Docker
 
-Needs debuggin
+Build: `mvn package -Pdocker`
+
+Run: Needs debugging
 

@@ -40,8 +40,13 @@ public class Database {
 
     public CouchbaseCluster getCluster() {
         if (null == cluster) {
-            System.out.println("COUCHBASE_URI: " + System.getenv("COUCHBASE_URI"));
-            cluster = CouchbaseCluster.create(System.getenv("COUCHBASE_URI"));
+            String couchbaseURI = System.getenv("COUCHBASE_URI");
+            if (null == couchbaseURI) {
+                System.err.println("WARING: No COUCHBASE_URI specified, defaulting to 192.168.99.100");
+                couchbaseURI = "192.168.99.100";
+            }
+            System.out.println("COUCHBASE_URI: " + couchbaseURI);
+            cluster = CouchbaseCluster.create(couchbaseURI);
         }
         return cluster;
     }

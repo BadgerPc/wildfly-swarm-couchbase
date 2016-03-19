@@ -59,7 +59,7 @@
                 <groupId>org.wildfly.swarm</groupId>
                 <artifactId>wildfly-swarm-plugin</artifactId>
                 <version>${version.wildfly-swarm}</version>
-<!--                <executions>
+                <executions>
                     <execution>
                         <id>package</id>
                     </execution>
@@ -69,7 +69,7 @@
                     <execution>
                         <id>stop</id>
                     </execution>
-                </executions>-->
+                </executions>
             </plugin>
             <plugin>
                 <groupId>io.fabric8</groupId>
@@ -97,7 +97,7 @@
                                 <env>
                                     <COUCHBASE_URI>${docker.host.address}</COUCHBASE_URI>
                                 </env>
-<!--                                <wait>
+                                <!--                                <wait>
                                     <http>
                                         <url>http://${docker.host.address}:${swarm.port}</url>
                                          Change this to 200 when the URL above hits an endpoint 

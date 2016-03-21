@@ -17,7 +17,7 @@ Endpoint: http://localhost:8080/webresources/airline
 
 === Using Maven only
 
-Build and Run: `mvn clean wildfly:run`
+Build and Run: `mvn clean wildfly-swarm:run`
 
 === Using CLI
 

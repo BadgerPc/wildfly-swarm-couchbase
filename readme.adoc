@@ -13,17 +13,13 @@
 
 == Build and Run the microservice using WildFly Swarm
 
-Endpoint: http://localhost:8080/webresources/airline
+=== Using Maven
 
-=== Using Maven only
+Build and Run: `mvn -DCOUCHBASE_URI=<IP> clean wildfly-swarm:run`
 
-Build and Run: `mvn clean wildfly-swarm:run`
+where `<IP>` is the IP address of where Couchbase Server is running. For example, this would be the IP address obtained using `docker-machine ip <machine-name>`.
 
-=== Using CLI
-
-Build: `mvn clean package`
-
-Run: `java -jar target/nosql-microservices-swarm.jar`
+Access the endpoint: http://localhost:8080/webresources/airline
 
 === Using Docker
 

@@ -45,7 +45,7 @@ public class Database {
                 System.err.println("WARING: No COUCHBASE_URI specified, defaulting to 192.168.99.100");
                 couchbaseURI = "192.168.99.100";
             }
-            System.out.println("COUCHBASE_URI: " + couchbaseURI);
+            System.out.println("Couchbase endpoint: " + System.getenv("COUCHBASE_URI"));
             cluster = CouchbaseCluster.create(couchbaseURI);
         }
         return cluster;

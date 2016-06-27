@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.wildfly-swarm>1.0.0.Beta6</version.wildfly-swarm>
+        <version.wildfly-swarm>1.0.0.Final</version.wildfly-swarm>
         <docker.image>arungupta/nosql-microservices:latest</docker.image>
     </properties>
 
@@ -35,7 +35,7 @@
         </dependency>
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
-            <artifactId>jaxrs-weld</artifactId>
+            <artifactId>jaxrs-cdi</artifactId>
         </dependency>
         <dependency>
             <groupId>org.wildfly.swarm</groupId>

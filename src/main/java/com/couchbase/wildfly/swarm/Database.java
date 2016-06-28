@@ -42,8 +42,8 @@ public class Database {
         if (null == cluster) {
             String couchbaseURI = System.getenv("COUCHBASE_URI");
             if (null == couchbaseURI) {
-                System.err.println("WARING: No COUCHBASE_URI specified, defaulting to 192.168.99.100");
-                couchbaseURI = "192.168.99.100";
+                System.err.println("WARING: No COUCHBASE_URI specified, defaulting to localhost");
+                couchbaseURI = "localhost:8093";
             }
             System.out.println("Couchbase endpoint: " + System.getenv("COUCHBASE_URI"));
             cluster = CouchbaseCluster.create(couchbaseURI);

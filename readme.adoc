@@ -2,14 +2,75 @@
 
 == Start and Configure Couchbase
 
-. Start Couchbase container:
+. Start Couchbase Docker container:
 
-  docker run -p 8091-8093:8091-8093 -p 11210:11210 arungupta/couchbase
+  docker run -d --name db -p 8091-8093:8091-8093 -p 11210:11210 arungupta/couchbase
 
-. Access Couchbase Web Console at http://{docker.host}:8091
-. Use credentials `Administrator` and `password`
-. Click on "`Settings`", "`Sample Buckets`"
-. Select `travel-sample` and click on "`Create`"
+. Create primary index on the sample bucket:
+
+  docker run -it --link db:db arungupta/couchbase cbq -u Administrator -p password -engine http://db:8093 -s "create primary index \`travel-sample-primary-index\` on \`travel-sample\`;"
++
+Output is:
++
+[source, text]
+----
+ Connected to : http://db:8093/. Type Ctrl-D or \QUIT to exit.
+
+ Path to history file for the shell : /root/.cbq_history 
+{
+    "requestID": "3312706a-b7fb-451c-ba93-7e861e6a9b45",
+    "signature": null,
+    "results": [
+    ],
+    "status": "success",
+    "metrics": {
+        "elapsedTime": "5.178990295s",
+        "executionTime": "5.178966139s",
+        "resultCount": 0,
+        "resultSize": 0
+    }
+}
+----
+
+. Check the database:
+
+  docker run -it --link db:db arungupta/couchbase cbq -u Administrator -p password -engine http://db:8093 -s "select * from \`travel-sample\` limit 1;"
++
+Output is:
++
+[source, text]
+----
+ Connected to : http://db:8093/. Type Ctrl-D or \QUIT to exit.
+
+ Path to history file for the shell : /root/.cbq_history 
+{
+    "requestID": "258f18cd-d36d-43b9-9522-f9c38a19dce5",
+    "signature": {
+        "*": "*"
+    },
+    "results": [
+        {
+            "travel-sample": {
+                "callsign": "MILE-AIR",
+                "country": "United States",
+                "iata": "Q5",
+                "icao": "MLA",
+                "id": 10,
+                "name": "40-Mile Air",
+                "type": "airline"
+            }
+        }
+    ],
+    "status": "success",
+    "metrics": {
+        "elapsedTime": "54.567432ms",
+        "executionTime": "54.545552ms",
+        "resultCount": 1,
+        "resultSize": 300
+    }
+}
+----
+
 
 == Build and Run the microservice using WildFly Swarm
 
@@ -17,7 +78,7 @@
 
 Build and Run: `mvn -DCOUCHBASE_URI=<IP> clean wildfly-swarm:run`
 
-where `<IP>` is the IP address of where Couchbase Server is running. For example, this would be the IP address obtained using `docker-machine ip <machine-name>`.
+where `<IP>` is the IP address of where Couchbase Server is running. For example, this would be the IP address obtained using `docker-machine ip <machine-name>`. Default value is `localhost`.
 
 Access the endpoint: http://localhost:8080/webresources/airline
 
